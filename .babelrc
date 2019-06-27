@@ -1,0 +1,18 @@
+{
+  "presets": [
+    [
+      "@babel/preset-react",
+      {
+        "pragma": "dom", // default pragma is React.createElement
+        "pragmaFrag": "DomFrag", // default is React.Fragment
+        "throwIfNamespace": false // defaults to true
+      }
+    ],
+  ],
+  "plugins": [
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-syntax-import-meta",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-json-strings"
+  ]
+}
