@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "esModuleInterop": true,
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "module": "commonjs",
+    "jsx": "react",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "listEmittedFiles": true,
+    "listFiles": true,
+    "strictNullChecks": true,
+    "traceResolution": true,
+    "baseUrl": ".",
+    "rootDir": ".",
+    "paths": {
+      "@/*": [
+        "./"
+      ],
+      "@/src/*": [
+        "./src/"
+      ]
+    }
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+}

@@ -9,24 +9,27 @@ const util = require('./util');
 const args = require('node-args')
 const spinner = ora(Colors.green('Loading development starting ... \n'));
 
+// args上传入的project_name的key   --project=${project_name}
+const ARG_PROJECT_NAME_KEY = 'project';
+
 // 开始 loading
 spinner.start();
 
-// 校验初始化参数
-util.verifyBuildParams(args);
-
 // 传入的项目名称
-const PROJECT_NAME = args.PROJECT;
+const PROJECT_NAME = args[ARG_PROJECT_NAME_KEY];
 // 项目原始目录
 const PROJECT_SOURCE_PATH = path.join(__dirname, '..', `src/projects/${PROJECT_NAME}`);
 // 项目生成目标目录
 const PROJECT_DIST_PATH = path.join(__dirname, '..', `dist/${PROJECT_NAME}`)
 
+// 校验初始化参数
+util.verifyBuildParams(args,PROJECT_NAME);
+
 // // 删除上一次生成的目录文件
 util.reomveLastBuildFile(PROJECT_DIST_PATH);
 
 // webpack-config
-const WEBPACK_CONFIG = require('./webpack.config.dev');
+const WEBPACK_CONFIG = require('./webpack.config.dev')(PROJECT_NAME);
 // webpack-dev-config
 const WEBPACK_SERVER_CONFIG = WEBPACK_CONFIG.devServer;
 
