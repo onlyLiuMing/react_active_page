@@ -21,7 +21,7 @@ const PROJECT_SOURCE_PATH = path.join(__dirname, '..', `src/projects/${PROJECT_N
 const PROJECT_DIST_PATH = path.join(__dirname, '..', `dist/${PROJECT_NAME}`)
 
 // 校验初始化参数
-util.verifyBuildParams(args,PROJECT_NAME);
+util.verifyBuildParams(args, PROJECT_NAME);
 
 // // 删除上一次生成的目录文件
 util.reomveLastBuildFile(PROJECT_DIST_PATH);

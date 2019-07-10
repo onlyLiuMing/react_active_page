@@ -3,6 +3,9 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const config = require('../config/webpack.config');
 
+const DEFAULT_HOST = 'localhost';
+const DEFAULT_PORT = 8000;
+
 
 
 function createDevWebpackConfig(projectName) {
@@ -14,24 +17,26 @@ function createDevWebpackConfig(projectName) {
   const PROJECT_NAME = projectName;
   // webpack公共配置
   const webpackCommonConfig = require('./webpack.config.common.js')(PROJECT_NAME);
+  // 项目生成目标目录
+  const PROJECT_DIST_PATH = path.join(__dirname, '..', `dist/${PROJECT_NAME}`);
   // webpack dev 配置
   const webpackDevConfig = {
     devServer: {
-      // contentBase: PROJECT_DIST_PATH,
-      contentBase: false,
-      publicPath: `/project/${PROJECT_NAME}`,
+      contentBase: PROJECT_DIST_PATH,
+      publicPath: `/${PROJECT_NAME}/`,
       compress: true,
-      port: config.development.port,
-      host: config.development.host,
+      port: config.development.port || DEFAULT_PORT,
+      host: config.development.host || DEFAULT_HOST,
       hot: true,
       hotOnly: true,
+      historyApiFallback: true,
       clientLogLevel: 'warning',
       lazy: false,
       open: true, //启动后，打开浏览器
-      openPage: `project/${PROJECT_NAME}`,
+      openPage: `${PROJECT_NAME}/`,
       overlay: {
         errors: true,
-        warnings: false,
+        warnings: true,
       },
       progress: true,
       inline: true,
