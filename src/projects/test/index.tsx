@@ -24,7 +24,5 @@ class App extends React.Component<{},{loaded:boolean}>{
   }
 };
 
-console.log(process.env);
-
 ReactDom.render(<App />, document.getElementById('app'));
 

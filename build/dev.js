@@ -57,6 +57,7 @@ portfinder.getPortPromise()
     });
   })
   .catch(err => {
+    spinner.text = Colors.red('Your application running failed, as starting port')
     console.log(JSON.stringify(err));
     process.exit(0);
   })
