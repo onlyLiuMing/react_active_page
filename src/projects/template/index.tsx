@@ -1,5 +1,6 @@
 import React,{ComponentClass} from 'react';
 import * as ReactDom from 'react-dom';
+import dayjs from 'dayjs';
 
 class App extends React.Component<{},{loaded:boolean}>{
   constructor(props){
@@ -23,8 +24,6 @@ class App extends React.Component<{},{loaded:boolean}>{
     }
   }
 };
-
-console.log(process.env);
 
 ReactDom.render(<App />, document.getElementById('app'));
 

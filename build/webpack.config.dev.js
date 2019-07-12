@@ -43,13 +43,11 @@ function createDevWebpackConfig(projectName) {
       inline: true,
     },
     plugins: [
-      new webpack.DefinePlugin({
-        'process.env': developmentEnvConfig,
-      }),
+      new webpack.DefinePlugin({}),
       new webpack.HotModuleReplacementPlugin(),
     ],
   };
-  return merge(webpackDevConfig, webpackCommonConfig);
+  return merge({ mode: 'development' }, webpackDevConfig, webpackCommonConfig);
 }
 
 // output

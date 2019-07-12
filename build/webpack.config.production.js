@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const  {productionEnvConfig}  = require('../config/webpack.env');
+const { productionEnvConfig } = require('../config/webpack.env');
 
 function createProductionWebpackConfig(projectName) {
   if (!projectName) {
@@ -12,13 +12,13 @@ function createProductionWebpackConfig(projectName) {
   );
   // webpack dev 配置
   const webpackProductionConfig = {
-    plugins: [
-      new webpack.DefinePlugin({
-        'process.env': productionEnvConfig,
-      }),
-    ],
+    plugins: [new webpack.DefinePlugin({})],
   };
-  return merge(webpackProductionConfig, webpackCommonConfig);
+  return merge(
+    { mode: 'production' },
+    webpackProductionConfig,
+    webpackCommonConfig
+  );
 }
 
 // output

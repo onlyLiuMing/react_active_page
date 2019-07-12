@@ -14,9 +14,6 @@ function createBaseWebpackConfig(projectName) {
     throw `未传入projectName`;
   }
 
-  var a = [{ a: 1, b: 23, c: 3 }, { a: 2 }];
-  var b = 'fasdf';
-
   // 项目目录名称
   const PROJECT_NAME = projectName;
   // 项目原始目录
@@ -38,7 +35,8 @@ function createBaseWebpackConfig(projectName) {
     output: {
       path: PROJECT_DIST_PATH,
       filename: `index.[hash].bundle.js`,
-      // publicPath: 'src/asset/',
+      publicPath: './',
+      chunkFilename: `[name].[hash].bundle.js`,
     },
     resolve: {
       extensions: ['.js', '.json', '.jsx', '.css', '.tsx', 'ts'], // 使用的扩展名
@@ -84,6 +82,29 @@ function createBaseWebpackConfig(projectName) {
           },
         },
       ],
+    },
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+        minSize: 30000,
+        maxSize: 0,
+        minChunks: 1,
+        maxAsyncRequests: 5,
+        maxInitialRequests: 3,
+        automaticNameDelimiter: '~',
+        name: true,
+        cacheGroups: {
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            priority: -10,
+          },
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true,
+          },
+        },
+      },
     },
     plugins: [
       new HtmlWebpackPlugin({
